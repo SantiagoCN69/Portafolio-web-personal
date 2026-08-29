@@ -1188,8 +1188,8 @@ function ContactForm() {
 function Contact() {
   const links = [
     { label: "GitHub", handle: "@SantiagoCN69", href: "https://github.com/SantiagoCN69" },
-    { label: "LinkedIn", handle: "Santiago Cardona Nossa", href: "https://linkedin.com" },
-    { label: "Email", handle: "santiago@email.com", href: "mailto:santiago@email.com" },
+    { label: "LinkedIn", handle: "Santiago Cardona Nossa", href: "https://www.linkedin.com/in/santiago-cardona-nossa/" },
+    { label: "Email", handle: "santiagocn08@email.com", href: "mailto:santiagocn08@email.com" },
   ];
 
   return (
