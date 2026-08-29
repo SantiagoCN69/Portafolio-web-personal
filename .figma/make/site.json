@@ -1,0 +1,10 @@
+{
+  "description": "Showcases interactive design and web development skills through a sleek dark-mode portfolio featuring dynamic case studies and smooth microinteractions.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
