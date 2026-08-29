@@ -160,7 +160,7 @@ const PROJECTS: Project[] = [
     ],
     accent: "#57b8ff",
     category: "flagship",
-    siteUrl: "https://smaguiettt.netlify.app/",
+    siteUrl: "https://smaguiett.netlify.app/",
     repoUrl: "https://github.com/SantiagoCN69/SmaguieTT",
   },
   {
