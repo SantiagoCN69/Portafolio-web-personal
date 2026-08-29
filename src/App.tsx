@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
+
 // ─── Particle network background ─────────────────────────────────────────────
 function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -1295,20 +1296,20 @@ function Footer() {
 // ─── Root ─────────────────────────────────────────────────────────────────────
 export default function App() {
   return (
-    <div className="noise">
+    <>
       <ParticleBackground />
       <div style={{ position: "relative", zIndex: 1 }}>
-      <Nav />
-      <main>
-        <Hero />
-        <About />
-        <Projects />
-        <Lab />
-        <Stack />
-        <Contact />
-      </main>
-      <Footer />
+        <Nav />
+        <main>
+          <Hero />
+          <About />
+          <Projects />
+          <Lab />
+          <Stack />
+          <Contact />
+        </main>
+        <Footer />
       </div>
-    </div>
+    </>
   );
 }

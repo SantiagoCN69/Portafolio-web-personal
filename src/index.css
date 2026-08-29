@@ -118,8 +118,8 @@ body {
   80% { clip-path: inset(30% 0 70% 0); transform: translate(1px, 0); }
 }
 
-/* Noise texture overlay */
-.noise::before {
+/* Noise texture overlay — on body to avoid React DOM conflicts */
+body::after {
   content: '';
   position: fixed;
   inset: 0;
