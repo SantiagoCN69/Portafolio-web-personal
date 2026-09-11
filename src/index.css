@@ -27,22 +27,16 @@
   --foreground: #f0f0f0;
   --card: #111111;
   --card-foreground: #f0f0f0;
-
-  --primary: #3B82F6;
+  --primary: #b8ff57;
   --primary-foreground: #080808;
-
   --secondary: #1a1a1a;
   --secondary-foreground: #a0a0a0;
-
   --muted: #161616;
   --muted-foreground: #666666;
-
-  --accent: #3B82F6;
+  --accent: #b8ff57;
   --accent-foreground: #080808;
-
   --border: #1f1f1f;
-  --ring: #3B82F6;
-
+  --ring: #b8ff57;
   --radius: 2px;
 }
 
