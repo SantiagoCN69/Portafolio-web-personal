@@ -141,7 +141,7 @@ const PROJECTS: Project[] = [
     ],
     accent: "#b8ff57",
     category: "flagship",
-    siteUrl: "https://anizenlite.netlify.app/",
+    siteUrl: "https://ani.zenlite.workers.dev/",
     repoUrl: "https://github.com/SantiagoCN69/Anime-FLV-LITE",
   },
   {
@@ -284,6 +284,7 @@ function Nav() {
           href="#hero"
           className="font-mono-display text-sm font-bold tracking-tight"
           style={{ color: "var(--primary)" }}
+          aria-label="Ir al inicio"
         >
           SCN<span style={{ color: "var(--muted-foreground)" }}>.dev</span>
         </a>
@@ -405,6 +406,7 @@ function Hero() {
     <section
       id="hero"
       className="relative min-h-screen grid-bg flex flex-col justify-center overflow-hidden"
+      aria-labelledby="hero-heading"
     >
       <div
         className="absolute inset-0 pointer-events-none"
@@ -442,6 +444,7 @@ function Hero() {
 
         {/* Main headline — establishes hybrid identity in <3s */}
         <h1
+          id="hero-heading"
           className="font-mono-display font-extrabold leading-none mb-4 animate-slide-up"
           style={{
             fontSize: "clamp(2.8rem, 9vw, 7.5rem)",
@@ -741,9 +744,10 @@ function Projects() {
   const flagship = PROJECTS.filter((p) => p.category === "flagship");
 
   return (
-    <Section id="projects">
+    <Section id="projects" aria-labelledby="projects-heading">
       <SectionLabel text="// Casos de estudio" />
       <h2
+        id="projects-heading"
         className="reveal font-mono-display font-extrabold mb-4"
         style={{ fontSize: "clamp(2rem, 5vw, 3.8rem)", letterSpacing: "-0.03em" }}
         data-delay={80}
@@ -759,7 +763,7 @@ function Projects() {
       >
         Casos con métricas de impacto medibles. Haz clic en cada tarjeta para ver el análisis completo Problema → Solución → Stack.
       </p>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4" role="list" aria-label="Lista de proyectos principales">
         {flagship.map((p, i) => (
           <ProjectCard key={p.id} project={p} delay={i * 90} />
         ))}
@@ -773,11 +777,12 @@ function Lab() {
   const lab = PROJECTS.filter((p) => p.category === "lab");
 
   return (
-    <section id="lab" style={{ background: "var(--muted)", borderTop: "1px solid var(--border)" }}>
+    <section id="lab" style={{ background: "var(--muted)", borderTop: "1px solid var(--border)" }} aria-labelledby="lab-heading">
       <Section id="lab-inner" className="!pt-24 !pb-24">
         <SectionLabel text="// Laboratorio UI & Micro-herramientas" />
         <div className="reveal mb-12" data-delay={60}>
           <h2
+            id="lab-heading"
             className="font-mono-display font-extrabold mb-4"
             style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em" }}
           >
@@ -792,7 +797,7 @@ function Lab() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-3 gap-4" role="list" aria-label="Lista de proyectos de laboratorio">
           {lab.map((p, i) => (
             <LabCard key={p.id} project={p} delay={i * 100} />
           ))}
@@ -949,11 +954,12 @@ function LabCard({ project, delay }: { project: Project; delay: number }) {
 // ─── Stack & Animation Recommendations ────────────────────────────────────────
 function Stack() {
   return (
-    <Section id="stack">
+    <Section id="stack" aria-labelledby="stack-heading">
       <SectionLabel text="// Stack técnico" />
       <div className="grid md:grid-cols-2 gap-16 items-start mb-20">
         <div>
           <h2
+            id="stack-heading"
             className="reveal font-mono-display font-extrabold mb-5"
             style={{ fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.03em" }}
           >
@@ -1197,6 +1203,7 @@ function Contact() {
     <section
       id="contact"
       style={{ borderTop: "1px solid var(--border)", background: "var(--muted)" }}
+      aria-labelledby="contact-heading"
     >
       <div className="max-w-6xl mx-auto px-6 py-24">
         <SectionLabel text="// Contacto" />
@@ -1204,6 +1211,7 @@ function Contact() {
           {/* Left — headline + links */}
           <div>
             <h2
+              id="contact-heading"
               className="font-mono-display font-extrabold mb-4 leading-none"
               style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", letterSpacing: "-0.03em" }}
             >

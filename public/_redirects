@@ -1,0 +1,6 @@
+# Netlify Redirects para SEO y SPA
+# Redirección de la página principal a la versión con barra diagonal
+/ /index.html 200
+
+# Redirecciones para enlaces que usan hash (para SPA)
+/* /index.html 200

@@ -1,43 +1,213 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" itemscope itemtype="https://schema.org/WebPage">
   <head>
     <!-- figma:head-start -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary SEO -->
-    <title>Santiago Cardona Nossa · Diseño Interactivo & Full Stack Developer</title>
-    <meta name="description" content="Portafolio de Santiago Cardona Nossa — Estudiante de Diseño Interactivo en la Universidad del Tolima y desarrollador Full Stack. React, Node.js, Firebase, UX/UI. Ibagué, Colombia." />
-    <meta name="author" content="Santiago Cardona Nossa" />
-    <meta name="keywords" content="Santiago Cardona, diseño interactivo, full stack developer, React, Node.js, Firebase, UX UI, Ibagué, Colombia, portafolio, frontend" />
-    <meta name="robots" content="index, follow" />
-    <meta name="google-site-verification" content="tqhAWhObbI3tDZGiXyOXXyfDr6_1ajXidt39nvuT_yo" />
-    <link rel="canonical" href="https://scndev.netlify.app/" />
+    <title>Santiago Cardona Nossa · Diseño Interactivo & Full Stack</title>
+    <meta name="description" content="Portafolio profesional de Santiago Cardona Nossa — Diseñador Interactivo y Desarrollador Full Stack en Ibagué, Colombia. Especialista en React, Node.js, Firebase, UX/UI y desarrollo de productos digitales con impacto medible. Disponible para proyectos freelance y colaboraciones.">
+    <meta name="author" content="Santiago Cardona Nossa">
+    <meta name="keywords" content="Santiago Cardona, diseño interactivo, full stack developer, React, Node.js, Firebase, UX UI, Ibagué, Colombia, portafolio web, frontend developer, desarrollador web, diseñador UX UI, desarrollo de aplicaciones, freelancer web Colombia, React developer, TypeScript, JavaScript, Firebase developer">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="google-site-verification" content="tqhAWhObbI3tDZGiXyOXXyfDr6_1ajXidt39nvuT_yo">
+    <link rel="canonical" href="https://scndev.netlify.app/">
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#080808">
+    <meta name="msapplication-TileColor" content="#080808">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SCN.dev">
+
+    <!-- Geographic SEO -->
+    <meta name="geo.region" content="CO-TOL">
+    <meta name="geo.placename" content="Ibagué">
+    <meta name="geo.position" content="4.4389;-75.2322">
+    <meta name="ICBM" content="4.4389, -75.2322">
+
+    <!-- Language and Localization -->
+    <meta name="content-language" content="es">
+    <meta http-equiv="content-language" content="es">
+    <meta name="language" content="Spanish">
 
     <!-- Open Graph (LinkedIn, Facebook, WhatsApp) -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://scndev.netlify.app/" />
-    <meta property="og:title" content="Santiago Cardona Nossa · Diseño Interactivo & Full Stack" />
-    <meta property="og:description" content="Construyo interfaces que las personas entienden y código que los sistemas escalan. React · Node.js · Firebase · UX/UI." />
-    <meta property="og:locale" content="es_CO" />
-    <meta property="og:image" content="https://scndev.netlify.app/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Santiago Cardona Nossa — Diseño Interactivo & Full Stack Developer" />
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://scndev.netlify.app/">
+    <meta property="og:title" content="Santiago Cardona Nossa · Diseño Interactivo & Full Stack Developer">
+    <meta property="og:description" content="Construyo interfaces que las personas entienden y código que los sistemas escalan. React · Node.js · Firebase · UX/UI. Disponible para proyectos freelance.">
+    <meta property="og:locale" content="es_CO">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:site_name" content="SCN.dev">
+    <meta property="og:image" content="https://scndev.netlify.app/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Santiago Cardona Nossa — Diseño Interactivo & Full Stack Developer">
+    <meta property="og:image:type" content="image/png">
 
     <!-- Twitter / X Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Santiago Cardona Nossa · Diseño Interactivo & Full Stack" />
-    <meta name="twitter:description" content="Construyo interfaces que las personas entienden y código que los sistemas escalan. React · Node.js · Firebase · UX/UI." />
-    <meta name="twitter:creator" content="@SantiagoCN69" />
-    <meta name="twitter:image" content="https://scndev.netlify.app/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Santiago Cardona Nossa · Diseño Interactivo & Full Stack">
+    <meta name="twitter:description" content="Construyo interfaces que las personas entienden y código que los sistemas escalan. React · Node.js · Firebase · UX/UI.">
+    <meta name="twitter:creator" content="@SantiagoCN69">
+    <meta name="twitter:site" content="@SantiagoCN69">
+    <meta name="twitter:image" content="https://scndev.netlify.app/og-image.png">
+    <meta name="twitter:image:alt" content="Santiago Cardona Nossa — Diseño Interactivo & Full Stack Developer">
+
+    <!-- LinkedIn Specific -->
+    <meta property="linkedin:owner" content="santiago-cardona-nossa">
 
     <!-- Favicon — PNGs nítidos + SVG escalable con las iniciales SCN -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="theme-color" content="#080808" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="mask-icon" href="/favicon.svg" color="#b8ff57">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SCN.dev">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Critical CSS Preload -->
+    <link rel="preload" href="/src/index.css" as="style">
+
+    <!-- Font Preload -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" as="style">
+
+    <!-- Schema.org Structured Data - Person/Profile -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Santiago Cardona Nossa",
+      "givenName": "Santiago",
+      "familyName": "Cardona Nossa",
+      "jobTitle": "Full Stack Developer & Interactive Designer",
+      "description": "Diseñador Interactivo y Desarrollador Full Stack especializado en React, Node.js, Firebase y UX/UI. Construyo interfaces que las personas entienden y código que los sistemas escalan.",
+      "url": "https://scndev.netlify.app/",
+      "image": "https://scndev.netlify.app/og-image.png",
+      "sameAs": [
+        "https://github.com/SantiagoCN69",
+        "https://www.linkedin.com/in/santiago-cardona-nossa/",
+        "https://twitter.com/SantiagoCN69"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ibagué",
+        "addressRegion": "Tolima",
+        "addressCountry": "CO"
+      },
+      "knowsAbout": [
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "Node.js",
+        "Firebase",
+        "UX/UI Design",
+        "Figma",
+        "Web Development",
+        "Full Stack Development",
+        "Progressive Web Apps",
+        "Chrome Extensions"
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Universidad del Tolima"
+      }
+    }
+    </script>
+
+    <!-- Schema.org Structured Data - WebSite -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "SCN.dev",
+      "alternateName": "Santiago Cardona Nossa Portfolio",
+      "url": "https://scndev.netlify.app/",
+      "description": "Portafolio profesional de Santiago Cardona Nossa — Diseñador Interactivo y Desarrollador Full Stack",
+      "inLanguage": "es",
+      "publisher": {
+        "@type": "Person",
+        "name": "Santiago Cardona Nossa"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://scndev.netlify.app/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- Schema.org Structured Data - Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "SCN.dev",
+      "url": "https://scndev.netlify.app/",
+      "logo": "https://scndev.netlify.app/favicon.svg",
+      "description": "Portafolio profesional y servicios de desarrollo web y diseño interactivo",
+      "founder": {
+        "@type": "Person",
+        "name": "Santiago Cardona Nossa"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "santiago@email.com",
+        "contactType": "customer service",
+        "areaServed": "CO",
+        "availableLanguage": ["Spanish", "English"]
+      }
+    }
+    </script>
+
+    <!-- Schema.org Structured Data - BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://scndev.netlify.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Proyectos",
+          "item": "https://scndev.netlify.app/#projects"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Stack Técnico",
+          "item": "https://scndev.netlify.app/#stack"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Contacto",
+          "item": "https://scndev.netlify.app/#contact"
+        }
+      ]
+    }
+    </script>
 
     <!-- figma:head-end -->
   </head>
