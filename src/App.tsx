@@ -144,6 +144,7 @@ const PROJECTS: Project[] = [
     category: "flagship",
     siteUrl: "https://ani.zenlite.workers.dev/",
     repoUrl: "https://github.com/SantiagoCN69/Anime-FLV-LITE",
+    image: "/anizen.png",
   },
   {
     id: "smaguiett",
@@ -164,6 +165,7 @@ const PROJECTS: Project[] = [
     category: "flagship",
     siteUrl: "https://smaguiett.netlify.app/",
     repoUrl: "https://github.com/SantiagoCN69/SmaguieTT",
+    image: "/smaguiett.png",
   },
   {
     id: "nouri",
@@ -184,6 +186,7 @@ const PROJECTS: Project[] = [
     category: "flagship",
     siteUrl: "https://nourioficial.netlify.app/",
     repoUrl: "https://github.com/SantiagoCN69/NouriApp",
+    image: "/nouri.png",
   },
   {
     id: "nexverse",
@@ -203,6 +206,7 @@ const PROJECTS: Project[] = [
     accent: "#a78bfa",
     category: "flagship",
     siteUrl: "https://nexverse.netlify.app/",
+    image: "/nexverse.png",
   },
   {
     id: "anizen-research",
@@ -224,6 +228,7 @@ const PROJECTS: Project[] = [
     category: "flagship",
     siteUrl: "https://effervescent-smakager-99f45c.netlify.app/#top",
     repoUrl: "https://github.com/SantiagoCN69/Anime-FLV-LITE",
+    image: "/anizensearch.png",
   },
   {
     id: "wa-black",
@@ -299,7 +304,7 @@ function Nav() {
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
         borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
-        background: scrolled ? "rgba(8,8,8,0.94)" : "transparent",
+        background: scrolled ? "rgba(19,19,16,0.94)" : "transparent",
         backdropFilter: scrolled ? "blur(16px)" : "none",
       }}
     >
@@ -429,14 +434,14 @@ function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen grid-bg flex flex-col justify-center overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden"
       aria-labelledby="hero-heading"
     >
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 50%, transparent 30%, #080808 100%)",
+            "radial-gradient(ellipse 80% 60% at 50% 50%, transparent 30%, #131310 100%)",
         }}
       />
       <div
@@ -452,7 +457,7 @@ function Hero() {
         {/* Main headline — establishes hybrid identity in <3s */}
         <h1
           id="hero-heading"
-          className="font-mono-display font-extrabold leading-none mb-4 animate-slide-up"
+          className="font-display font-bold leading-none mb-4 animate-slide-up"
           style={{
             fontSize: "clamp(2.8rem, 9vw, 7.5rem)",
             letterSpacing: "-0.03em",
@@ -668,18 +673,8 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
         {/* Header */}
         <div className="flex items-start justify-between gap-4 mb-6">
           <div>
-            <span
-              className="font-mono-display text-xs tracking-widest block mb-2"
-              style={{
-                color: "var(--muted-foreground)",
-                opacity: 0.6,
-                transition: "opacity 0.3s ease"
-              }}
-            >
-              {project.index}
-            </span>
             <h3
-              className="font-mono-display font-bold text-2xl md:text-3xl leading-tight"
+              className="font-display font-bold text-2xl md:text-3xl leading-tight"
               style={{
                 letterSpacing: "-0.02em",
                 transition: "transform 0.3s ease",
@@ -710,6 +705,21 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
             +
           </span>
         </div>
+
+        {project.image && (
+          <div
+            className="mb-6 overflow-hidden"
+            style={{ border: "1px solid var(--border)" }}
+          >
+            <img
+              src={project.image}
+              alt={`Captura de ${project.name}`}
+              className="w-full block"
+              style={{ display: "block" }}
+              loading="lazy"
+            />
+          </div>
+        )}
 
         {/* Metrics with animation */}
         <div
@@ -774,48 +784,6 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
           className="px-8 md:px-10 pb-10 pt-6"
           style={{ borderTop: "1px solid var(--border)" }}
         >
-          {expanded && project.siteUrl && (
-            <div className="mb-8" style={{ border: "1px solid var(--border)" }}>
-              <div
-                className="flex items-center gap-2 px-3 py-2"
-                style={{ borderBottom: "1px solid var(--border)", background: "var(--secondary)" }}
-              >
-                <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#ff5f57" }} />
-                <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#febc2e" }} />
-                <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#28c840" }} />
-                <span
-                  className="font-mono-display text-xs ml-2 px-3 py-0.5 truncate"
-                  style={{
-                    background: "var(--background)",
-                    border: "1px solid var(--border)",
-                    color: "var(--muted-foreground)",
-                  }}
-                >
-                  {project.siteUrl.replace(/^https?:\/\//, "")}
-                </span>
-                <a
-                  href={project.siteUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-mono-display text-xs ml-auto flex-shrink-0"
-                  style={{ color: project.accent }}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  Abrir ↗
-                </a>
-              </div>
-              <div style={{ aspectRatio: "16 / 9", background: "var(--background)", overflow: "hidden" }}>
-                <iframe
-                  src={project.siteUrl}
-                  title={`Vista previa de ${project.name}`}
-                  className="w-full h-full"
-                  style={{ border: 0, display: "block" }}
-                  loading="lazy"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-            </div>
-          )}
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             <div>
               <p
@@ -851,7 +819,7 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
                   className="font-mono-display text-xs tracking-widest uppercase px-5 py-2.5 font-bold transition-all duration-200"
                   style={{
                     background: project.accent,
-                    color: "#080808",
+                    color: "var(--primary-foreground)",
                     boxShadow: hovered ? `0 4px 20px ${project.accent}40` : "none"
                   }}
                   onMouseEnter={(e) => {
@@ -918,8 +886,8 @@ function Projects() {
       <SectionLabel text="// Casos de estudio" />
       <h2
         id="projects-heading"
-        className="reveal font-mono-display font-extrabold mb-4"
-        style={{ fontSize: "clamp(2rem, 5vw, 3.8rem)", letterSpacing: "-0.03em" }}
+        className="reveal font-display font-bold mb-4"
+        style={{ fontSize: "clamp(2rem, 5vw, 3.8rem)", letterSpacing: "-0.02em" }}
         data-delay={80}
       >
         Proyectos que resuelven
@@ -953,7 +921,7 @@ function Lab() {
         <div className="reveal mb-12" data-delay={60}>
           <h2
             id="lab-heading"
-            className="font-mono-display font-extrabold mb-4"
+            className="font-display font-bold mb-4"
             style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em" }}
           >
             DOM Manipulation &{" "}
@@ -1008,21 +976,12 @@ function LabCard({ project, delay }: { project: Project; delay: number }) {
               src={project.image}
               alt={`Captura de ${project.name}`}
               className="w-full block"
-              style={{ aspectRatio: "2 / 1", objectFit: "cover", display: "block" }}
+              style={{ display: "block" }}
               loading="lazy"
             />
           </div>
         )}
-        <div className="flex items-center justify-between mb-4">
-          <span
-            className="font-mono-display text-xs tracking-widest"
-            style={{
-              color: "var(--muted-foreground)",
-              transition: "color 0.3s ease"
-            }}
-          >
-            {project.index}
-          </span>
+        <div className="flex items-center justify-end mb-4">
           <span
             className="font-mono-display text-xs px-2 py-0.5"
             style={{
@@ -1039,7 +998,7 @@ function LabCard({ project, delay }: { project: Project; delay: number }) {
         </div>
 
         <h3
-          className="font-mono-display font-bold text-lg mb-1 leading-tight"
+          className="font-display font-bold text-lg mb-1 leading-tight"
           style={{
             letterSpacing: "-0.01em",
             transition: "transform 0.3s ease",
@@ -1133,7 +1092,7 @@ function LabCard({ project, delay }: { project: Project; delay: number }) {
                 className="font-mono-display text-xs px-4 py-2 font-bold transition-all duration-200"
                 style={{
                   background: project.accent,
-                  color: "#080808",
+                  color: "var(--primary-foreground)",
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",
                   boxShadow: hovered ? `0 4px 15px ${project.accent}40` : "none"
@@ -1204,8 +1163,8 @@ function Stack() {
         <div>
           <h2
             id="stack-heading"
-            className="reveal font-mono-display font-extrabold mb-5"
-            style={{ fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.03em" }}
+            className="reveal font-display font-bold mb-5"
+            style={{ fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em" }}
           >
             Herramientas que uso
             <br />
@@ -1265,7 +1224,7 @@ function About() {
               // Sobre mí
             </p>
             <p
-              className="font-mono-display font-bold leading-tight"
+              className="font-display font-bold leading-tight"
               style={{ fontSize: "clamp(1.4rem, 3vw, 2rem)", letterSpacing: "-0.02em" }}
             >
               No soy solo un developer.
@@ -1363,7 +1322,7 @@ function ContactForm() {
         >
           // Mensaje enviado
         </span>
-        <p className="font-mono-display font-bold text-xl" style={{ letterSpacing: "-0.01em" }}>
+        <p className="font-display font-semibold text-xl" style={{ letterSpacing: "-0.01em" }}>
           Gracias por escribir.
           <br />
           <span style={{ color: "var(--primary)" }}>Te respondo pronto.</span>
@@ -1456,7 +1415,7 @@ function Contact() {
           <div>
             <h2
               id="contact-heading"
-              className="font-mono-display font-extrabold mb-4 leading-none"
+              className="font-display font-bold mb-4 leading-none"
               style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", letterSpacing: "-0.03em" }}
             >
               Construyamos
