@@ -140,7 +140,7 @@ const PROJECTS: Project[] = [
       { label: "Score Lighthouse", value: "96" },
       { label: "Carga inicial", value: "<1.4s" },
     ],
-    accent: "#b8ff57",
+    accent: "#b7a5e8",
     category: "flagship",
     siteUrl: "https://ani.zenlite.workers.dev/",
     repoUrl: "https://github.com/SantiagoCN69/Anime-FLV-LITE",
@@ -161,7 +161,7 @@ const PROJECTS: Project[] = [
       { label: "Tiempo al carrito", value: "28s" },
       { label: "Productos activos", value: "120+" },
     ],
-    accent: "#57b8ff",
+    accent: "#ef93bd",
     category: "flagship",
     siteUrl: "https://smaguiett.netlify.app/",
     repoUrl: "https://github.com/SantiagoCN69/SmaguieTT",
@@ -182,7 +182,7 @@ const PROJECTS: Project[] = [
       { label: "Alertas a tiempo", value: "72h antes" },
       { label: "Mobile score", value: "98" },
     ],
-    accent: "#ff57b8",
+    accent: "#6ea8e0",
     category: "flagship",
     siteUrl: "https://nourioficial.netlify.app/",
     repoUrl: "https://github.com/SantiagoCN69/NouriApp",
@@ -203,7 +203,7 @@ const PROJECTS: Project[] = [
       { label: "Dependencias", value: "Cero" },
       { label: "Sorpresa", value: "100%" },
     ],
-    accent: "#a78bfa",
+    accent: "#d17f5c",
     category: "flagship",
     siteUrl: "https://nexverse.netlify.app/",
     image: "/nexverse.png",
@@ -224,7 +224,7 @@ const PROJECTS: Project[] = [
       { label: "Arquetipos identificados", value: "4 perfiles" },
       { label: "Capas de arquitectura", value: "5 niveles" },
     ],
-    accent: "#ff9500",
+    accent: "#a68fe0",
     category: "flagship",
     siteUrl: "https://effervescent-smakager-99f45c.netlify.app/#top",
     repoUrl: "https://github.com/SantiagoCN69/Anime-FLV-LITE",
@@ -642,7 +642,8 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
       style={{
         background: "var(--card)",
         position: "relative",
-        overflow: "hidden"
+        overflow: "hidden",
+        borderColor: hovered ? project.accent : "var(--border)"
       } as React.CSSProperties}
       data-delay={delay}
       onMouseEnter={() => setHovered(true)}
@@ -709,7 +710,7 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
         {project.image && (
           <div
             className="mb-6 overflow-hidden"
-            style={{ border: "1px solid var(--border)" }}
+            style={{ border: `1px solid ${project.accent}` }}
           >
             <img
               src={project.image}
@@ -968,8 +969,7 @@ function LabCard({ project, delay }: { project: Project; delay: number }) {
           <div
             className="mb-5 overflow-hidden"
             style={{
-              border: `1px solid ${hovered ? project.accent : "var(--border)"}`,
-              transition: "border-color 0.3s ease",
+              border: `1px solid ${project.accent}`,
             }}
           >
             <img
