@@ -191,7 +191,7 @@ function Nav() {
   const links = [
     { label: "Proyectos", href: "#projects" },
     { label: "Laboratorio", href: "#lab" },
-    { label: "Motion", href: "#motion" },
+    { label: "Animación", href: "#motion" },
     { label: "Stack", href: "#stack" },
     { label: "Contacto", href: "#contact" },
   ];
@@ -1040,19 +1040,19 @@ const ANIMATIONS: Animation[] = [
     id: "motion-01",
     title: "Baile",
     description:
-      "Pieza de motion graphics creada en After Effects. Describe aquí el concepto, el estilo y el objetivo de la animación.",
+      "Pieza de rotoscopia: trazado fotograma a fotograma sobre video de referencia. Describe aquí el concepto, el estilo y el objetivo de la animación.",
     gif: "/animaciones-gifs/baile.gif",
     accent: "#c4b5f0",
-    tool: "After Effects",
+    tool: "Rotoscopia",
   },
   {
     id: "motion-02",
     title: "Pokémon",
     description:
-      "Pieza de motion graphics creada en After Effects. Describe aquí el concepto, el estilo y el objetivo de la animación.",
+      "Pieza de animación tradicional creada frame a frame. Describe aquí el concepto, el estilo y el objetivo de la animación.",
     gif: "/animaciones-gifs/pokemon.gif",
     accent: "#f0a8bf",
-    tool: "After Effects",
+    tool: "Animación tradicional",
   },
 ];
 
@@ -1198,21 +1198,21 @@ function Motion() {
   return (
     <section id="motion" style={{ borderTop: "1px solid var(--border)" }} aria-labelledby="motion-heading">
       <Section id="motion-inner">
-        <SectionLabel text="// Motion & Animation" />
+        <SectionLabel text="// Animación" />
         <div className="mb-12">
           <h2
             id="motion-heading"
             className="font-display font-bold mb-4"
             style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em" }}
           >
-            Motion graphics{" "}
-            <span style={{ color: "var(--primary)" }}>& After Effects.</span>
+            Animación{" "}
+            <span style={{ color: "var(--primary)" }}>& rotoscopia.</span>
           </h2>
           <p
             className="text-sm leading-relaxed"
             style={{ color: "var(--muted-foreground)", maxWidth: "55ch" }}
           >
-            Piezas de animación 2D/3D, transiciones y motion graphics creadas en Adobe After Effects.
+            Piezas de animación tradicional y rotoscopia creadas frame a frame.
           </p>
         </div>
 
