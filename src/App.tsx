@@ -185,8 +185,48 @@ const PROJECTS: Project[] = [
     repoUrl: "https://github.com/SantiagoCN69/NouriApp",
   },
   {
-    id: "wa-black",
+    id: "nexverse",
     index: "04",
+    name: "NexVerse",
+    tagline: "Sitio web · Descubrimiento · Diversión",
+    problem:
+      "Internet está lleno de sitios web curiosos, raros y divertidos que nadie conoce porque los algoritmos solo muestran lo popular. Descubrirlos no tenía un lugar dedicado.",
+    solution:
+      "Sitio web sencillo para descubrir páginas web divertidas, diferentes e inesperadas. Cada visita lleva a un lugar nuevo. Sin algoritmos, sin historial, solo exploración aleatoria y curiosidad.",
+    stack: ["JavaScript", "HTML", "CSS"],
+    metrics: [
+      { label: "Sitios curados", value: "100+" },
+      { label: "Dependencias", value: "Cero" },
+      { label: "Sorpresa", value: "100%" },
+    ],
+    accent: "#a78bfa",
+    category: "flagship",
+    siteUrl: "https://nexverse.netlify.app/",
+  },
+  {
+    id: "anizen-research",
+    index: "05",
+    name: "AniZen Research",
+    tagline: "Investigación UX · IA · Streaming Anime · Universidad",
+    problem:
+      "El ecosistema del streaming de anime está fragmentado: Crunchyroll especializa pero tiene restricciones de licenciamiento, Netflix personaliza pero fragmenta catálogos, y webs abiertas ofrecen acceso pero carecen de seguridad y estabilidad. La audiencia universitaria (93.4% estudiantes, 84.7% jóvenes 17-25 años) busca descubrimiento inteligente, continuidad sin fricción y biblioteca personal, pero ninguna plataforma satisface todas estas necesidades simultáneamente.",
+    solution:
+      "Investigación académica completa sobre hábitos de consumo de anime en población universitaria de Cartagena (n=350). Análisis comparativo de 3 modelos de streaming (Crunchyroll, Netflix, webs abiertas) que reveló 4 arquetipos de usuario: El Explorador, El Seguidor, El Organizador y El Casual. Traducción de hallazgos en producto: centralización de catálogo/reproducción/seguimiento, biblioteca personal con estados (viendo/completado/pendiente/favorito), filtros específicos (género/año/estudio) y funciones de IA para búsqueda contextual, historial conectado, lenguaje natural y afinidad narrativa. AniZen convierte dispersión en centralización, seguimiento en biblioteca y búsqueda en descubrimiento.",
+    stack: ["UX Research", "Data Analysis", "User Personas", "Gemini API", "Firebase", "React", "Node.js", "IA Recomendaciones", "UX Writing", "Design Systems"],
+    metrics: [
+      { label: "Muestra universitaria", value: "n=350" },
+      { label: "Plataformas analizadas", value: "3 modelos" },
+      { label: "Arquetipos identificados", value: "4 perfiles" },
+      { label: "Capas de arquitectura", value: "5 niveles" },
+    ],
+    accent: "#ff9500",
+    category: "flagship",
+    siteUrl: "https://effervescent-smakager-99f45c.netlify.app/#top",
+    repoUrl: "https://github.com/SantiagoCN69/Anime-FLV-LITE",
+  },
+  {
+    id: "wa-black",
+    index: "06",
     name: "WhatsApp Web Black Pure",
     tagline: "Rediseño visual · CSS · Tema oscuro puro",
     problem:
@@ -205,7 +245,7 @@ const PROJECTS: Project[] = [
   },
   {
     id: "academusoft",
-    index: "05",
+    index: "07",
     name: "Extensión Academusoft",
     tagline: "Rediseño UI · CSS · Plataforma universitaria",
     problem:
@@ -221,25 +261,6 @@ const PROJECTS: Project[] = [
     accent: "#ffa657",
     category: "lab",
     repoUrl: "https://github.com/SantiagoCN69/Extencion-Academusoft",
-  },
-  {
-    id: "nexverse",
-    index: "06",
-    name: "NexVerse",
-    tagline: "Sitio web · Descubrimiento · Diversión",
-    problem:
-      "Internet está lleno de sitios web curiosos, raros y divertidos que nadie conoce porque los algoritmos solo muestran lo popular. Descubrirlos no tenía un lugar dedicado.",
-    solution:
-      "Sitio web sencillo para descubrir páginas web divertidas, diferentes e inesperadas. Cada visita lleva a un lugar nuevo. Sin algoritmos, sin historial, solo exploración aleatoria y curiosidad.",
-    stack: ["JavaScript", "HTML", "CSS"],
-    metrics: [
-      { label: "Sitios curados", value: "100+" },
-      { label: "Dependencias", value: "Cero" },
-      { label: "Sorpresa", value: "100%" },
-    ],
-    accent: "#a78bfa",
-    category: "lab",
-    siteUrl: "https://nexverse.netlify.app/",
   },
 ];
 
@@ -425,23 +446,6 @@ function Hero() {
       />
 
       <div className="relative max-w-6xl mx-auto px-6 pt-24 pb-20">
-        {/* Status / location badge */}
-        <div
-          className="inline-flex items-center gap-2 mb-10 px-3 py-1.5 animate-fade-in"
-          style={{ border: "1px solid var(--border)" }}
-        >
-          <span
-            className="w-1.5 h-1.5 rounded-full"
-            style={{ background: "var(--primary)", boxShadow: "0 0 8px var(--primary)" }}
-          />
-          <span
-            className="font-mono-display text-xs tracking-widest uppercase"
-            style={{ color: "var(--muted-foreground)" }}
-          >
-            Ibagué, Colombia · Disponible remoto
-          </span>
-        </div>
-
         {/* Main headline — establishes hybrid identity in <3s */}
         <h1
           id="hero-heading"
@@ -518,6 +522,23 @@ function Hero() {
           </a>
         </div>
 
+        {/* Status / location badge */}
+        <div
+          className="inline-flex items-center gap-2 mt-10 px-3 py-1.5 animate-fade-in"
+          style={{ border: "1px solid var(--border)" }}
+        >
+          <span
+            className="w-1.5 h-1.5 rounded-full"
+            style={{ background: "var(--primary)", boxShadow: "0 0 8px var(--primary)" }}
+          />
+          <span
+            className="font-mono-display text-xs tracking-widest uppercase"
+            style={{ color: "var(--muted-foreground)" }}
+          >
+            Ibagué, Colombia · Disponible remoto
+          </span>
+        </div>
+
       </div>
     </section>
   );
@@ -584,15 +605,51 @@ function SectionLabel({ text }: { text: string }) {
 // ─── Project Card ─────────────────────────────────────────────────────────────
 function ProjectCard({ project, delay }: { project: Project; delay: number }) {
   const [expanded, setExpanded] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
   return (
     <div
       className="project-card reveal"
-      style={{ background: "var(--card)" } as React.CSSProperties}
+      style={{
+        background: "var(--card)",
+        position: "relative",
+        overflow: "hidden"
+      } as React.CSSProperties}
       data-delay={delay}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
+      {/* Glow effect on hover */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: `radial-gradient(circle at ${hovered ? "50% 50%" : "100% 100%"}, ${project.accent}15 0%, transparent 70%)`,
+          opacity: hovered ? 1 : 0,
+          transition: "opacity 0.3s ease",
+          pointerEvents: "none"
+        }}
+      />
+
+      {/* Border accent line */}
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          top: 0,
+          bottom: 0,
+          width: "3px",
+          background: project.accent,
+          transform: "scaleY(0)",
+          transformOrigin: "bottom",
+          transition: "transform 0.3s ease",
+          boxShadow: `0 0 20px ${project.accent}`,
+        }}
+        className="border-accent-line"
+      />
+
       <button
-        className="w-full text-left p-8 md:p-10"
+        className="w-full text-left p-8 md:p-10 relative z-10"
         onClick={() => setExpanded(!expanded)}
         aria-expanded={expanded}
       >
@@ -601,42 +658,66 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
           <div>
             <span
               className="font-mono-display text-xs tracking-widest block mb-2"
-              style={{ color: "var(--muted-foreground)" }}
+              style={{
+                color: "var(--muted-foreground)",
+                opacity: 0.6,
+                transition: "opacity 0.3s ease"
+              }}
             >
               {project.index}
             </span>
             <h3
               className="font-mono-display font-bold text-2xl md:text-3xl leading-tight"
-              style={{ letterSpacing: "-0.02em" }}
+              style={{
+                letterSpacing: "-0.02em",
+                transition: "transform 0.3s ease",
+                transform: hovered ? "translateX(4px)" : "translateX(0)"
+              }}
             >
               {project.name}
             </h3>
             <p
               className="font-mono-display text-xs mt-1.5 tracking-wide"
-              style={{ color: project.accent }}
+              style={{
+                color: project.accent,
+                opacity: 0.8,
+                transition: "opacity 0.3s ease"
+              }}
             >
               {project.tagline}
             </p>
           </div>
           <span
-            className="font-mono-display text-xl flex-shrink-0 mt-1 transition-transform duration-300"
+            className="font-mono-display text-xl flex-shrink-0 mt-1 transition-all duration-300"
             style={{
               color: project.accent,
-              transform: expanded ? "rotate(45deg)" : "rotate(0deg)",
+              transform: expanded ? "rotate(45deg) scale(1.1)" : "rotate(0deg) scale(1)",
               display: "inline-block",
+              filter: hovered ? `drop-shadow(0 0 8px ${project.accent})` : "none"
             }}
           >
             +
           </span>
         </div>
 
-        {/* Metrics */}
+        {/* Metrics with animation */}
         <div className="grid grid-cols-3 gap-4 mb-6">
-          {project.metrics.map((m) => (
-            <div key={m.label}>
+          {project.metrics.map((m, idx) => (
+            <div
+              key={m.label}
+              style={{
+                transition: "transform 0.3s ease",
+                transform: hovered ? "translateY(-2px)" : "translateY(0)",
+                transitionDelay: `${idx * 50}ms`
+              }}
+            >
               <div
                 className="font-mono-display font-bold text-xl md:text-2xl"
-                style={{ color: project.accent }}
+                style={{
+                  color: project.accent,
+                  transition: "all 0.3s ease",
+                  filter: hovered ? `drop-shadow(0 0 6px ${project.accent})` : "none"
+                }}
               >
                 {m.value}
               </div>
@@ -650,10 +731,21 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
           ))}
         </div>
 
-        {/* Stack */}
+        {/* Stack with hover effects */}
         <div className="flex flex-wrap gap-2">
-          {project.stack.map((s) => (
-            <span key={s} className="skill-tag" style={{ color: "var(--muted-foreground)" }}>
+          {project.stack.map((s, idx) => (
+            <span
+              key={s}
+              className="skill-tag"
+              style={{
+                color: "var(--muted-foreground)",
+                transition: "all 0.2s ease",
+                borderColor: hovered ? project.accent : "var(--border)",
+                color: hovered ? project.accent : "var(--muted-foreground)",
+                transform: hovered ? "scale(1.05)" : "scale(1)",
+                transitionDelay: `${idx * 30}ms`
+              }}
+            >
               {s}
             </span>
           ))}
@@ -701,10 +793,20 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
                   href={project.siteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono-display text-xs tracking-widest uppercase px-5 py-2.5 font-bold transition-opacity duration-200"
-                  style={{ background: project.accent, color: "#080808" }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.82")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
+                  className="font-mono-display text-xs tracking-widest uppercase px-5 py-2.5 font-bold transition-all duration-200"
+                  style={{
+                    background: project.accent,
+                    color: "#080808",
+                    boxShadow: hovered ? `0 4px 20px ${project.accent}40` : "none"
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.opacity = "0.82";
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.opacity = "1";
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                  }}
                   onClick={(e) => e.stopPropagation()}
                 >
                   Probar ahora →
@@ -720,10 +822,12 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
                   onMouseEnter={(e) => {
                     (e.currentTarget as HTMLElement).style.borderColor = "var(--foreground)";
                     (e.currentTarget as HTMLElement).style.color = "var(--foreground)";
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
                   }}
                   onMouseLeave={(e) => {
                     (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
                     (e.currentTarget as HTMLElement).style.color = "var(--muted-foreground)";
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
                   }}
                   onClick={(e) => e.stopPropagation()}
                 >
@@ -818,135 +922,208 @@ function LabCard({ project, delay }: { project: Project; delay: number }) {
         border: `1px solid ${hovered ? project.accent : "var(--border)"}`,
         background: "var(--card)",
         transform: hovered ? "translateY(-4px)" : "none",
+        position: "relative",
+        overflow: "hidden"
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className="flex items-center justify-between mb-4">
-        <span
-          className="font-mono-display text-xs tracking-widest"
-          style={{ color: "var(--muted-foreground)" }}
-        >
-          {project.index}
-        </span>
-        <span
-          className="font-mono-display text-xs px-2 py-0.5"
-          style={{
-            border: `1px solid ${project.accent}`,
-            color: project.accent,
-            fontSize: "0.6rem",
-            letterSpacing: "0.1em",
-          }}
-        >
-          LAB
-        </span>
-      </div>
+      {/* Glow effect on hover */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: `radial-gradient(circle at ${hovered ? "50% 50%" : "100% 100%"}, ${project.accent}12 0%, transparent 70%)`,
+          opacity: hovered ? 1 : 0,
+          transition: "opacity 0.3s ease",
+          pointerEvents: "none"
+        }}
+      />
 
-      <h3
-        className="font-mono-display font-bold text-lg mb-1 leading-tight"
-        style={{ letterSpacing: "-0.01em" }}
-      >
-        {project.name}
-      </h3>
-      <p
-        className="font-mono-display text-xs mb-4 tracking-wide"
-        style={{ color: project.accent }}
-      >
-        {project.tagline}
-      </p>
+      {/* Corner accent */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          width: "20px",
+          height: "20px",
+          background: `linear-gradient(135deg, ${project.accent} 0%, transparent 50%)`,
+          opacity: hovered ? 1 : 0,
+          transition: "opacity 0.3s ease"
+        }}
+      />
 
-      {/* Metrics mini */}
-      <div className="flex flex-col gap-2 mb-5">
-        {project.metrics.map((m) => (
-          <div key={m.label} className="flex items-center justify-between gap-4">
-            <span
-              className="font-mono-display"
-              style={{ fontSize: "0.65rem", color: "var(--muted-foreground)", letterSpacing: "0.05em" }}
-            >
-              {m.label}
-            </span>
-            <span
-              className="font-mono-display font-bold text-sm flex-shrink-0"
-              style={{ color: project.accent }}
-            >
-              {m.value}
-            </span>
-          </div>
-        ))}
-      </div>
-
-      <p
-        className="text-xs leading-relaxed mb-5"
-        style={{ color: "var(--secondary-foreground)" }}
-      >
-        {project.solution.slice(0, 160)}…
-      </p>
-
-      <div className="flex flex-wrap gap-1.5 mb-5">
-        {project.stack.slice(0, 3).map((s) => (
+      <div className="relative z-10">
+        <div className="flex items-center justify-between mb-4">
           <span
-            key={s}
-            className="font-mono-display"
+            className="font-mono-display text-xs tracking-widest"
             style={{
-              fontSize: "0.6rem",
-              letterSpacing: "0.05em",
-              border: "1px solid var(--border)",
-              padding: "2px 8px",
               color: "var(--muted-foreground)",
+              transition: "color 0.3s ease"
             }}
           >
-            {s}
+            {project.index}
           </span>
-        ))}
-      </div>
-
-      {(project.siteUrl || project.repoUrl) && (
-        <div className="flex gap-2 flex-wrap">
-          {project.siteUrl && (
-            <a
-              href={project.siteUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono-display text-xs px-4 py-2 font-bold transition-opacity duration-200"
-              style={{
-                background: project.accent,
-                color: "#080808",
-                letterSpacing: "0.06em",
-                textTransform: "uppercase",
-              }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.82")}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
-            >
-              Probar →
-            </a>
-          )}
-          {project.repoUrl && (
-            <a
-              href={project.repoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 font-mono-display text-xs px-4 py-2 transition-all duration-200"
-              style={{
-                border: "1px solid var(--border)",
-                color: "var(--muted-foreground)",
-                letterSpacing: "0.06em",
-                textTransform: "uppercase",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = project.accent;
-                (e.currentTarget as HTMLElement).style.color = project.accent;
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
-                (e.currentTarget as HTMLElement).style.color = "var(--muted-foreground)";
-              }}
-            >
-              <GitHubIcon size={12} />
-              Código
-            </a>
-          )}
+          <span
+            className="font-mono-display text-xs px-2 py-0.5"
+            style={{
+              border: `1px solid ${project.accent}`,
+              color: project.accent,
+              fontSize: "0.6rem",
+              letterSpacing: "0.1em",
+              boxShadow: hovered ? `0 0 10px ${project.accent}40` : "none",
+              transition: "all 0.3s ease"
+            }}
+          >
+            LAB
+          </span>
         </div>
-      )}
+
+        <h3
+          className="font-mono-display font-bold text-lg mb-1 leading-tight"
+          style={{
+            letterSpacing: "-0.01em",
+            transition: "transform 0.3s ease",
+            transform: hovered ? "translateX(2px)" : "translateX(0)"
+          }}
+        >
+          {project.name}
+        </h3>
+        <p
+          className="font-mono-display text-xs mb-4 tracking-wide"
+          style={{
+            color: project.accent,
+            opacity: 0.8,
+            transition: "opacity 0.3s ease"
+          }}
+        >
+          {project.tagline}
+        </p>
+
+        {/* Metrics mini */}
+        <div className="flex flex-col gap-2 mb-5">
+          {project.metrics.map((m, idx) => (
+            <div
+              key={m.label}
+              className="flex items-center justify-between gap-4"
+              style={{
+                transition: "transform 0.3s ease",
+                transform: hovered ? "translateX(2px)" : "translateX(0)",
+                transitionDelay: `${idx * 50}ms`
+              }}
+            >
+              <span
+                className="font-mono-display"
+                style={{
+                  fontSize: "0.65rem",
+                  color: "var(--muted-foreground)",
+                  letterSpacing: "0.05em"
+                }}
+              >
+                {m.label}
+              </span>
+              <span
+                className="font-mono-display font-bold text-sm flex-shrink-0"
+                style={{
+                  color: project.accent,
+                  filter: hovered ? `drop-shadow(0 0 4px ${project.accent})` : "none",
+                  transition: "all 0.3s ease"
+                }}
+              >
+                {m.value}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        <p
+          className="text-xs leading-relaxed mb-5"
+          style={{ color: "var(--secondary-foreground)" }}
+        >
+          {project.solution.slice(0, 160)}…
+        </p>
+
+        <div className="flex flex-wrap gap-1.5 mb-5">
+          {project.stack.slice(0, 3).map((s, idx) => (
+            <span
+              key={s}
+              className="font-mono-display"
+              style={{
+                fontSize: "0.6rem",
+                letterSpacing: "0.05em",
+                border: "1px solid var(--border)",
+                padding: "2px 8px",
+                color: "var(--muted-foreground)",
+                transition: "all 0.2s ease",
+                borderColor: hovered ? project.accent : "var(--border)",
+                color: hovered ? project.accent : "var(--muted-foreground)",
+                transform: hovered ? "scale(1.05)" : "scale(1)",
+                transitionDelay: `${idx * 30}ms`
+              }}
+            >
+              {s}
+            </span>
+          ))}
+        </div>
+
+        {(project.siteUrl || project.repoUrl) && (
+          <div className="flex gap-2 flex-wrap">
+            {project.siteUrl && (
+              <a
+                href={project.siteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono-display text-xs px-4 py-2 font-bold transition-all duration-200"
+                style={{
+                  background: project.accent,
+                  color: "#080808",
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  boxShadow: hovered ? `0 4px 15px ${project.accent}40` : "none"
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.opacity = "0.82";
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.opacity = "1";
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                }}
+              >
+                Probar →
+              </a>
+            )}
+            {project.repoUrl && (
+              <a
+                href={project.repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 font-mono-display text-xs px-4 py-2 transition-all duration-200"
+                style={{
+                  border: "1px solid var(--border)",
+                  color: "var(--muted-foreground)",
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = project.accent;
+                  (e.currentTarget as HTMLElement).style.color = project.accent;
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
+                  (e.currentTarget as HTMLElement).style.color = "var(--muted-foreground)";
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                }}
+              >
+                <GitHubIcon size={12} />
+                Código
+              </a>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

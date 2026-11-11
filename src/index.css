@@ -189,3 +189,43 @@ body::after {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Project card border accent animation */
+.project-card:hover .border-accent-line {
+  transform: scaleY(1);
+}
+
+/* Pulsing glow for project cards */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Staggered animation for elements */
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Magnetic button effect */
+@keyframes magnetic-pull {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(var(--tx), var(--ty));
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
