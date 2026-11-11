@@ -1058,9 +1058,24 @@ const ANIMATIONS: Animation[] = [
 
 function AnimationCard({ animation }: { animation: Animation }) {
   const [hovered, setHovered] = useState(false);
+  const [lightbox, setLightbox] = useState(false);
   const { glowRef } = useSpotlight(animation.accent, hovered);
 
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(false);
+    };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [lightbox]);
+
   return (
+    <>
     <div
       className="transition-all duration-300"
       style={{
@@ -1082,8 +1097,9 @@ function AnimationCard({ animation }: { animation: Animation }) {
           <img
             src={animation.gif}
             alt={animation.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain cursor-zoom-in"
             loading="lazy"
+            onClick={() => setLightbox(true)}
           />
         ) : (
           <div
@@ -1135,6 +1151,46 @@ function AnimationCard({ animation }: { animation: Animation }) {
         }}
       />
     </div>
+
+    {lightbox && animation.gif && (
+      <div
+        className="fixed inset-0 z-[100] flex items-center justify-center p-6"
+        style={{ background: "rgba(0,0,0,0.92)", backdropFilter: "blur(8px)" }}
+        onClick={() => setLightbox(false)}
+        role="dialog"
+        aria-modal="true"
+        aria-label={animation.title}
+      >
+        <button
+          className="absolute top-5 right-5 font-mono-display text-2xl leading-none px-2 py-1 transition-colors duration-200"
+          style={{ color: "var(--muted-foreground)" }}
+          onClick={() => setLightbox(false)}
+          onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--foreground)")}
+          onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--muted-foreground)")}
+          aria-label="Cerrar"
+        >
+          ✕
+        </button>
+        <figure
+          className="flex flex-col items-center gap-4 max-w-full"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <img
+            src={animation.gif}
+            alt={animation.title}
+            className="max-w-full max-h-[80vh] object-contain"
+            style={{ border: `1px solid ${animation.accent}` }}
+          />
+          <figcaption
+            className="font-mono-display text-xs tracking-widest uppercase"
+            style={{ color: animation.accent }}
+          >
+            {animation.title} · {animation.tool}
+          </figcaption>
+        </figure>
+      </div>
+    )}
+    </>
   );
 }
 
