@@ -1,102 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
 
-// ─── Particle network background ─────────────────────────────────────────────
-function ParticleBackground() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let animId: number;
-    const PARTICLE_COLOR = "184, 255, 87"; // --primary rgb
-    const COUNT = 55;
-    const MAX_DIST = 160;
-    const SPEED = 0.28;
-
-    type P = { x: number; y: number; vx: number; vy: number };
-    let particles: P[] = [];
-
-    function resize() {
-      canvas!.width = window.innerWidth;
-      canvas!.height = window.innerHeight;
-    }
-
-    function init() {
-      resize();
-      particles = Array.from({ length: COUNT }, () => ({
-        x: Math.random() * canvas!.width,
-        y: Math.random() * canvas!.height,
-        vx: (Math.random() - 0.5) * SPEED,
-        vy: (Math.random() - 0.5) * SPEED,
-      }));
-    }
-
-    function draw() {
-      ctx!.clearRect(0, 0, canvas!.width, canvas!.height);
-
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > canvas!.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas!.height) p.vy *= -1;
-
-        // dot
-        ctx!.beginPath();
-        ctx!.arc(p.x, p.y, 1.2, 0, Math.PI * 2);
-        ctx!.fillStyle = `rgba(${PARTICLE_COLOR}, 0.35)`;
-        ctx!.fill();
-
-        // connections
-        for (let j = i + 1; j < particles.length; j++) {
-          const q = particles[j];
-          const dx = p.x - q.x;
-          const dy = p.y - q.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < MAX_DIST) {
-            const alpha = (1 - dist / MAX_DIST) * 0.12;
-            ctx!.beginPath();
-            ctx!.moveTo(p.x, p.y);
-            ctx!.lineTo(q.x, q.y);
-            ctx!.strokeStyle = `rgba(${PARTICLE_COLOR}, ${alpha})`;
-            ctx!.lineWidth = 0.8;
-            ctx!.stroke();
-          }
-        }
-      }
-
-      animId = requestAnimationFrame(draw);
-    }
-
-    init();
-    draw();
-    window.addEventListener("resize", init);
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener("resize", init);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position: "fixed",
-        inset: 0,
-        width: "100%",
-        height: "100%",
-        pointerEvents: "none",
-        zIndex: 0,
-        opacity: 0.7,
-      }}
-    />
-  );
-}
-
 // ─── GitHub icon ──────────────────────────────────────────────────────────────
 function GitHubIcon({ size = 14 }: { size?: number }) {
   return (
@@ -109,7 +13,6 @@ function GitHubIcon({ size = 14 }: { size?: number }) {
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Project {
   id: string;
-  index: string;
   name: string;
   tagline: string;
   problem: string;
@@ -127,7 +30,6 @@ interface Project {
 const PROJECTS: Project[] = [
   {
     id: "anizen",
-    index: "01",
     name: "AniZen",
     tagline: "PWA · IA · Multi-servidor · Anime streaming",
     problem:
@@ -140,7 +42,7 @@ const PROJECTS: Project[] = [
       { label: "Score Lighthouse", value: "96" },
       { label: "Carga inicial", value: "<1.4s" },
     ],
-    accent: "#b7a5e8",
+    accent: "#c4b5f0",
     category: "flagship",
     siteUrl: "https://ani.zenlite.workers.dev/",
     repoUrl: "https://github.com/SantiagoCN69/Anime-FLV-LITE",
@@ -148,7 +50,6 @@ const PROJECTS: Project[] = [
   },
   {
     id: "smaguiett",
-    index: "02",
     name: "SmaguieTT",
     tagline: "E-commerce · Firestore · Funnel WhatsApp",
     problem:
@@ -161,7 +62,7 @@ const PROJECTS: Project[] = [
       { label: "Tiempo al carrito", value: "28s" },
       { label: "Productos activos", value: "120+" },
     ],
-    accent: "#ef93bd",
+    accent: "#f0a8bf",
     category: "flagship",
     siteUrl: "https://smaguiett.netlify.app/",
     repoUrl: "https://github.com/SantiagoCN69/SmaguieTT",
@@ -169,7 +70,6 @@ const PROJECTS: Project[] = [
   },
   {
     id: "nouri",
-    index: "03",
     name: "Nouri",
     tagline: "Proyecto de clase · Marca · Anti-desperdicio alimentario",
     problem:
@@ -182,7 +82,7 @@ const PROJECTS: Project[] = [
       { label: "Alertas a tiempo", value: "72h antes" },
       { label: "Mobile score", value: "98" },
     ],
-    accent: "#6ea8e0",
+    accent: "#8fc7f0",
     category: "flagship",
     siteUrl: "https://nourioficial.netlify.app/",
     repoUrl: "https://github.com/SantiagoCN69/NouriApp",
@@ -190,7 +90,6 @@ const PROJECTS: Project[] = [
   },
   {
     id: "nexverse",
-    index: "04",
     name: "NexVerse",
     tagline: "Sitio web · Descubrimiento · Diversión",
     problem:
@@ -203,14 +102,13 @@ const PROJECTS: Project[] = [
       { label: "Dependencias", value: "Cero" },
       { label: "Sorpresa", value: "100%" },
     ],
-    accent: "#d17f5c",
+    accent: "#f0b27a",
     category: "flagship",
     siteUrl: "https://nexverse.netlify.app/",
     image: "/nexverse.png",
   },
   {
     id: "anizen-research",
-    index: "05",
     name: "AniZen Research",
     tagline: "Investigación UX · IA · Streaming Anime · Universidad",
     problem:
@@ -224,7 +122,7 @@ const PROJECTS: Project[] = [
       { label: "Arquetipos identificados", value: "4 perfiles" },
       { label: "Capas de arquitectura", value: "5 niveles" },
     ],
-    accent: "#a68fe0",
+    accent: "#d0a8f0",
     category: "flagship",
     siteUrl: "https://effervescent-smakager-99f45c.netlify.app/#top",
     repoUrl: "https://github.com/SantiagoCN69/Anime-FLV-LITE",
@@ -232,7 +130,6 @@ const PROJECTS: Project[] = [
   },
   {
     id: "wa-black",
-    index: "06",
     name: "WhatsApp Web Black Pure",
     tagline: "Rediseño visual · CSS · Tema oscuro puro",
     problem:
@@ -245,14 +142,13 @@ const PROJECTS: Project[] = [
       { label: "Funcionalidad", value: "Intacta" },
       { label: "Compatibilidad", value: "Chrome/Edge" },
     ],
-    accent: "#25d366",
+    accent: "#9fe0b8",
     category: "lab",
     repoUrl: "https://github.com/SantiagoCN69/Extencion-WP-WEB-Black-pure",
     image: "/whatsapp.png",
   },
   {
     id: "academusoft",
-    index: "07",
     name: "Extensión Academusoft",
     tagline: "Rediseño UI · CSS · Plataforma universitaria",
     problem:
@@ -265,7 +161,7 @@ const PROJECTS: Project[] = [
       { label: "Backend", value: "Sin tocar" },
       { label: "Instalación", value: "1 clic" },
     ],
-    accent: "#ffa657",
+    accent: "#f0c25e",
     category: "lab",
     repoUrl: "https://github.com/SantiagoCN69/Extencion-Academusoft",
     image: "/academusoft.png",
@@ -304,7 +200,7 @@ function Nav() {
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
         borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
-        background: scrolled ? "rgba(19,19,16,0.94)" : "transparent",
+        background: scrolled ? "rgba(12,12,14,0.94)" : "transparent",
         backdropFilter: scrolled ? "blur(16px)" : "none",
       }}
     >
@@ -441,7 +337,7 @@ function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 50%, transparent 30%, #131310 100%)",
+            "radial-gradient(ellipse 80% 60% at 50% 50%, transparent 30%, var(--background) 100%)",
         }}
       />
       <div
@@ -450,7 +346,7 @@ function Hero() {
       />
       <div
         className="absolute bottom-1/4 -right-40 w-80 h-80 rounded-full pointer-events-none"
-        style={{ background: "#57b8ff", opacity: 0.03, filter: "blur(80px)" }}
+        style={{ background: "var(--muted-foreground)", opacity: 0.025, filter: "blur(80px)" }}
       />
 
       <div className="relative max-w-6xl mx-auto px-6 pt-24 pb-20">
@@ -535,7 +431,7 @@ function Hero() {
   );
 }
 
-// ─── Reveal wrapper ───────────────────────────────────────────────────────────
+// ─── Section wrapper ──────────────────────────────────────────────────────────
 function Section({
   id,
   children,
@@ -547,28 +443,8 @@ function Section({
   className?: string;
   style?: React.CSSProperties;
 }) {
-  const ref = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const nodes = el.querySelectorAll(".reveal");
-    const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            const delay = Number((e.target as HTMLElement).dataset.delay ?? 0);
-            setTimeout(() => e.target.classList.add("visible"), delay);
-          }
-        }),
-      { threshold: 0.08 }
-    );
-    nodes.forEach((n) => observer.observe(n));
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section id={id} ref={ref} className={`max-w-6xl mx-auto px-6 py-24 ${className}`} style={style}>
+    <section id={id} className={`max-w-6xl mx-auto px-6 py-24 ${className}`} style={style}>
       {children}
     </section>
   );
@@ -576,10 +452,10 @@ function Section({
 
 function SectionLabel({ text }: { text: string }) {
   return (
-    <div className="reveal flex items-center gap-4 mb-10">
+    <div className="flex items-center gap-4 mb-10">
       <span
         style={{
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "var(--font-mono)",
           fontSize: "0.7rem",
           letterSpacing: "0.15em",
           textTransform: "uppercase",
@@ -631,21 +507,20 @@ function useSpotlight(accent: string, active: boolean) {
 }
 
 // ─── Project Card ─────────────────────────────────────────────────────────────
-function ProjectCard({ project, delay }: { project: Project; delay: number }) {
+function ProjectCard({ project }: { project: Project }) {
   const [expanded, setExpanded] = useState(false);
   const [hovered, setHovered] = useState(false);
   const { glowRef } = useSpotlight(project.accent, hovered);
 
   return (
     <div
-      className="project-card reveal"
+      className="project-card"
       style={{
         background: "var(--card)",
         position: "relative",
         overflow: "hidden",
         borderColor: hovered ? project.accent : "var(--border)"
       } as React.CSSProperties}
-      data-delay={delay}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -688,7 +563,6 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
               className="font-mono-display text-xs mt-1.5 tracking-wide"
               style={{
                 color: project.accent,
-                opacity: 0.8,
                 transition: "opacity 0.3s ease"
               }}
             >
@@ -887,24 +761,22 @@ function Projects() {
       <SectionLabel text="// Casos de estudio" />
       <h2
         id="projects-heading"
-        className="reveal font-display font-bold mb-4"
+        className="font-display font-bold mb-4"
         style={{ fontSize: "clamp(2rem, 5vw, 3.8rem)", letterSpacing: "-0.02em" }}
-        data-delay={80}
       >
         Proyectos que resuelven
         <br />
         <span style={{ color: "var(--primary)" }}>problemas reales.</span>
       </h2>
       <p
-        className="reveal text-sm mb-12 leading-relaxed"
+        className="text-sm mb-12 leading-relaxed"
         style={{ color: "var(--muted-foreground)", maxWidth: "50ch" }}
-        data-delay={140}
       >
         Casos con métricas de impacto medibles. Haz clic en cada tarjeta para ver el análisis completo Problema → Solución → Stack.
       </p>
       <div className="flex flex-col gap-4" role="list" aria-label="Lista de proyectos principales">
-        {flagship.map((p, i) => (
-          <ProjectCard key={p.id} project={p} delay={i * 90} />
+        {flagship.map((p) => (
+          <ProjectCard key={p.id} project={p} />
         ))}
       </div>
     </Section>
@@ -919,7 +791,7 @@ function Lab() {
     <section id="lab" style={{ background: "var(--muted)", borderTop: "1px solid var(--border)" }} aria-labelledby="lab-heading">
       <Section id="lab-inner">
         <SectionLabel text="// Laboratorio UI & Micro-herramientas" />
-        <div className="reveal mb-12" data-delay={60}>
+        <div className="mb-12">
           <h2
             id="lab-heading"
             className="font-display font-bold mb-4"
@@ -937,8 +809,8 @@ function Lab() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-4" role="list" aria-label="Lista de proyectos de laboratorio">
-          {lab.map((p, i) => (
-            <LabCard key={p.id} project={p} delay={i * 100} />
+          {lab.map((p) => (
+            <LabCard key={p.id} project={p} />
           ))}
         </div>
       </Section>
@@ -946,14 +818,13 @@ function Lab() {
   );
 }
 
-function LabCard({ project, delay }: { project: Project; delay: number }) {
+function LabCard({ project }: { project: Project }) {
   const [hovered, setHovered] = useState(false);
   const { glowRef } = useSpotlight(project.accent, hovered);
 
   return (
     <div
-      className="reveal p-7 transition-all duration-300"
-      data-delay={delay}
+      className="p-7 transition-all duration-300"
       style={{
         border: `1px solid ${hovered ? project.accent : "var(--border)"}`,
         background: "var(--card)",
@@ -1011,7 +882,6 @@ function LabCard({ project, delay }: { project: Project; delay: number }) {
           className="font-mono-display text-xs mb-4 tracking-wide"
           style={{
             color: project.accent,
-            opacity: 0.8,
             transition: "opacity 0.3s ease"
           }}
         >
@@ -1163,7 +1033,7 @@ function Stack() {
         <div>
           <h2
             id="stack-heading"
-            className="reveal font-display font-bold mb-5"
+            className="font-display font-bold mb-5"
             style={{ fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em" }}
           >
             Herramientas que uso
@@ -1171,16 +1041,15 @@ function Stack() {
             <span style={{ color: "var(--primary)" }}>a diario.</span>
           </h2>
           <p
-            className="reveal text-sm leading-relaxed"
+            className="text-sm leading-relaxed"
             style={{ color: "var(--muted-foreground)", maxWidth: "38ch" }}
-            data-delay={80}
           >
             Combino criterio de diseño (Figma, sistemas de diseño, accesibilidad WCAG) con ingeniería de software para construir productos que rinden bajo presión de usuarios reales.
           </p>
         </div>
         <div className="space-y-6">
-          {Object.entries(SKILLS).map(([category, items], i) => (
-            <div key={category} className="reveal" data-delay={i * 70}>
+          {Object.entries(SKILLS).map(([category, items]) => (
+            <div key={category}>
               <p
                 className="font-mono-display text-xs tracking-widest uppercase mb-2.5"
                 style={{ color: "var(--muted-foreground)" }}
@@ -1266,7 +1135,7 @@ function ContactForm() {
     background: "var(--background)",
     border: `1px solid ${focused === name ? "var(--primary)" : "var(--border)"}`,
     color: "var(--foreground)",
-    fontFamily: "'JetBrains Mono', monospace",
+    fontFamily: "var(--font-mono)",
     fontSize: "0.8rem",
     padding: "12px 14px",
     outline: "none",
@@ -1276,7 +1145,7 @@ function ContactForm() {
 
   const labelStyle: React.CSSProperties = {
     display: "block",
-    fontFamily: "'JetBrains Mono', monospace",
+    fontFamily: "var(--font-mono)",
     fontSize: "0.65rem",
     letterSpacing: "0.12em",
     textTransform: "uppercase",
@@ -1371,7 +1240,7 @@ function ContactForm() {
       </div>
 
       {status === "error" && (
-        <p className="font-mono-display text-xs" style={{ color: "#ff5757" }}>
+        <p className="font-mono-display text-xs" style={{ color: "#f0a49a" }}>
           {errorMsg}
         </p>
       )}
@@ -1508,7 +1377,6 @@ function Footer() {
 export default function App() {
   return (
     <>
-      <ParticleBackground />
       <div style={{ position: "relative", zIndex: 1 }}>
         <Nav />
         <main>
