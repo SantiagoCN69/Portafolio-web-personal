@@ -46,7 +46,7 @@ const PROJECTS: Project[] = [
     category: "flagship",
     siteUrl: "https://ani.zenlite.workers.dev/",
     repoUrl: "https://github.com/SantiagoCN69/Anime-FLV-LITE",
-    image: "/anizen.png",
+    image: "/webs-caps/anizen.png",
   },
   {
     id: "smaguiett",
@@ -66,7 +66,7 @@ const PROJECTS: Project[] = [
     category: "flagship",
     siteUrl: "https://smaguiett.netlify.app/",
     repoUrl: "https://github.com/SantiagoCN69/SmaguieTT",
-    image: "/smaguiett.png",
+    image: "/webs-caps/smaguiett.png",
   },
   {
     id: "nouri",
@@ -86,7 +86,7 @@ const PROJECTS: Project[] = [
     category: "flagship",
     siteUrl: "https://nourioficial.netlify.app/",
     repoUrl: "https://github.com/SantiagoCN69/NouriApp",
-    image: "/nouri.png",
+    image: "/webs-caps/nouri.png",
   },
   {
     id: "nexverse",
@@ -105,7 +105,7 @@ const PROJECTS: Project[] = [
     accent: "#f0b27a",
     category: "flagship",
     siteUrl: "https://nexverse.netlify.app/",
-    image: "/nexverse.png",
+    image: "/webs-caps/nexverse.png",
   },
   {
     id: "anizen-research",
@@ -124,9 +124,9 @@ const PROJECTS: Project[] = [
     ],
     accent: "#d0a8f0",
     category: "flagship",
-    siteUrl: "https://effervescent-smakager-99f45c.netlify.app/#top",
+    siteUrl: "https://investigacion-ani.zenlite.workers.dev/",
     repoUrl: "https://github.com/SantiagoCN69/Anime-FLV-LITE",
-    image: "/anizensearch.png",
+    image: "/webs-caps/anizensearch.png",
   },
   {
     id: "wa-black",
@@ -145,7 +145,7 @@ const PROJECTS: Project[] = [
     accent: "#9fe0b8",
     category: "lab",
     repoUrl: "https://github.com/SantiagoCN69/Extencion-WP-WEB-Black-pure",
-    image: "/whatsapp.png",
+    image: "/extenciones-caps/whatsapp.png",
   },
   {
     id: "academusoft",
@@ -164,7 +164,7 @@ const PROJECTS: Project[] = [
     accent: "#f0c25e",
     category: "lab",
     repoUrl: "https://github.com/SantiagoCN69/Extencion-Academusoft",
-    image: "/academusoft.png",
+    image: "/extenciones-caps/academusoft.png",
   },
 ];
 
@@ -191,6 +191,7 @@ function Nav() {
   const links = [
     { label: "Proyectos", href: "#projects" },
     { label: "Laboratorio", href: "#lab" },
+    { label: "Motion", href: "#motion" },
     { label: "Stack", href: "#stack" },
     { label: "Contacto", href: "#contact" },
   ];
@@ -1024,6 +1025,151 @@ function LabCard({ project }: { project: Project }) {
   );
 }
 
+// ─── Motion / Animation projects ──────────────────────────────────────────────
+interface Animation {
+  id: string;
+  title: string;
+  description: string;
+  gif?: string;
+  accent: string;
+  tool: string;
+}
+
+const ANIMATIONS: Animation[] = [
+  {
+    id: "motion-01",
+    title: "Baile",
+    description:
+      "Pieza de motion graphics creada en After Effects. Describe aquí el concepto, el estilo y el objetivo de la animación.",
+    gif: "/animaciones-gifs/baile.gif",
+    accent: "#c4b5f0",
+    tool: "After Effects",
+  },
+  {
+    id: "motion-02",
+    title: "Pokémon",
+    description:
+      "Pieza de motion graphics creada en After Effects. Describe aquí el concepto, el estilo y el objetivo de la animación.",
+    gif: "/animaciones-gifs/pokemon.gif",
+    accent: "#f0a8bf",
+    tool: "After Effects",
+  },
+];
+
+function AnimationCard({ animation }: { animation: Animation }) {
+  const [hovered, setHovered] = useState(false);
+  const { glowRef } = useSpotlight(animation.accent, hovered);
+
+  return (
+    <div
+      className="transition-all duration-300"
+      style={{
+        border: `1px solid ${hovered ? animation.accent : "var(--border)"}`,
+        background: "var(--card)",
+        transform: hovered ? "translateY(-4px)" : "none",
+        position: "relative",
+        overflow: "hidden",
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* GIF / media */}
+      <div
+        className="w-full overflow-hidden"
+        style={{ aspectRatio: "16 / 9", background: "#000", borderBottom: `1px solid ${hovered ? animation.accent : "var(--border)"}` }}
+      >
+        {animation.gif ? (
+          <img
+            src={animation.gif}
+            alt={animation.title}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        ) : (
+          <div
+            className="w-full h-full flex items-center justify-center"
+            style={{
+              border: "1px dashed var(--border)",
+              color: "var(--muted-foreground)",
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.7rem",
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+            }}
+          >
+            GIF próximamente
+          </div>
+        )}
+      </div>
+
+      <div className="relative z-10 p-6">
+        <h3
+          className="font-display font-bold text-lg leading-tight mb-2"
+          style={{
+            letterSpacing: "-0.01em",
+            transition: "transform 0.3s ease",
+            transform: hovered ? "translateX(2px)" : "translateX(0)",
+          }}
+        >
+          {animation.title}
+        </h3>
+        <p
+          className="font-mono-display text-xs mb-3 tracking-wide"
+          style={{ color: animation.accent }}
+        >
+          {animation.tool}
+        </p>
+        <p className="text-xs leading-relaxed" style={{ color: "var(--secondary-foreground)" }}>
+          {animation.description}
+        </p>
+      </div>
+      <div
+        ref={glowRef}
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 20,
+          pointerEvents: "none",
+          opacity: hovered ? 1 : 0,
+          transition: "opacity 0.3s ease",
+        }}
+      />
+    </div>
+  );
+}
+
+function Motion() {
+  return (
+    <section id="motion" style={{ borderTop: "1px solid var(--border)" }} aria-labelledby="motion-heading">
+      <Section id="motion-inner">
+        <SectionLabel text="// Motion & Animation" />
+        <div className="mb-12">
+          <h2
+            id="motion-heading"
+            className="font-display font-bold mb-4"
+            style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em" }}
+          >
+            Motion graphics{" "}
+            <span style={{ color: "var(--primary)" }}>& After Effects.</span>
+          </h2>
+          <p
+            className="text-sm leading-relaxed"
+            style={{ color: "var(--muted-foreground)", maxWidth: "55ch" }}
+          >
+            Piezas de animación 2D/3D, transiciones y motion graphics creadas en Adobe After Effects.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-4" role="list" aria-label="Lista de animaciones">
+          {ANIMATIONS.map((a) => (
+            <AnimationCard key={a.id} animation={a} />
+          ))}
+        </div>
+      </Section>
+    </section>
+  );
+}
+
 // ─── Stack & Animation Recommendations ────────────────────────────────────────
 function Stack() {
   return (
@@ -1384,6 +1530,7 @@ export default function App() {
           <About />
           <Projects />
           <Lab />
+          <Motion />
           <Stack />
           <Contact />
         </main>
