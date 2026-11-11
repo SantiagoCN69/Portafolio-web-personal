@@ -591,13 +591,15 @@ function useSpotlight(accent: string, active: boolean) {
   const target = useRef({ x: 0, y: 0 });
   const current = useRef({ x: 0, y: 0 });
 
-  const onMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    target.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
-  };
-
   useEffect(() => {
     if (!active) return;
+    const onMouseMove = (e: MouseEvent) => {
+      const card = glowRef.current?.parentElement;
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      target.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    };
+    window.addEventListener("mousemove", onMouseMove);
     let raf = 0;
     const tick = () => {
       const el = glowRef.current;
@@ -611,17 +613,20 @@ function useSpotlight(accent: string, active: boolean) {
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      cancelAnimationFrame(raf);
+    };
   }, [active, accent]);
 
-  return { glowRef, onMouseMove };
+  return { glowRef };
 }
 
 // ─── Project Card ─────────────────────────────────────────────────────────────
 function ProjectCard({ project, delay }: { project: Project; delay: number }) {
   const [expanded, setExpanded] = useState(false);
   const [hovered, setHovered] = useState(false);
-  const { glowRef, onMouseMove } = useSpotlight(project.accent, hovered);
+  const { glowRef } = useSpotlight(project.accent, hovered);
 
   return (
     <div
@@ -634,7 +639,6 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
       data-delay={delay}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      onMouseMove={onMouseMove}
     >
       {/* Border accent line */}
       <div
@@ -972,7 +976,7 @@ function Lab() {
 
 function LabCard({ project, delay }: { project: Project; delay: number }) {
   const [hovered, setHovered] = useState(false);
-  const { glowRef, onMouseMove } = useSpotlight(project.accent, hovered);
+  const { glowRef } = useSpotlight(project.accent, hovered);
 
   return (
     <div
@@ -987,7 +991,6 @@ function LabCard({ project, delay }: { project: Project; delay: number }) {
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      onMouseMove={onMouseMove}
     >
       <div className="relative z-10">
         <div className="flex items-center justify-between mb-4">
