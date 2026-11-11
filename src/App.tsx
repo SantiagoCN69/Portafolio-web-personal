@@ -522,23 +522,6 @@ function Hero() {
           </a>
         </div>
 
-        {/* Status / location badge */}
-        <div
-          className="inline-flex items-center gap-2 mt-10 px-3 py-1.5 animate-fade-in"
-          style={{ border: "1px solid var(--border)" }}
-        >
-          <span
-            className="w-1.5 h-1.5 rounded-full"
-            style={{ background: "var(--primary)", boxShadow: "0 0 8px var(--primary)" }}
-          />
-          <span
-            className="font-mono-display text-xs tracking-widest uppercase"
-            style={{ color: "var(--muted-foreground)" }}
-          >
-            Ibagué, Colombia · Disponible remoto
-          </span>
-        </div>
-
       </div>
     </section>
   );
@@ -602,10 +585,43 @@ function SectionLabel({ text }: { text: string }) {
   );
 }
 
+// ─── Spotlight hover (efecto líquido que sigue al mouse con inercia) ──────────
+function useSpotlight(accent: string, active: boolean) {
+  const glowRef = useRef<HTMLDivElement>(null);
+  const target = useRef({ x: 0, y: 0 });
+  const current = useRef({ x: 0, y: 0 });
+
+  const onMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    target.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  };
+
+  useEffect(() => {
+    if (!active) return;
+    let raf = 0;
+    const tick = () => {
+      const el = glowRef.current;
+      const cur = current.current;
+      const tgt = target.current;
+      cur.x += (tgt.x - cur.x) * 0.07;
+      cur.y += (tgt.y - cur.y) * 0.07;
+      if (el) {
+        el.style.background = `radial-gradient(circle 340px at ${cur.x}px ${cur.y}px, ${accent}2e 0%, ${accent}14 30%, transparent 65%)`;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [active, accent]);
+
+  return { glowRef, onMouseMove };
+}
+
 // ─── Project Card ─────────────────────────────────────────────────────────────
 function ProjectCard({ project, delay }: { project: Project; delay: number }) {
   const [expanded, setExpanded] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const { glowRef, onMouseMove } = useSpotlight(project.accent, hovered);
 
   return (
     <div
@@ -618,19 +634,8 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
       data-delay={delay}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      onMouseMove={onMouseMove}
     >
-      {/* Glow effect on hover */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: `radial-gradient(circle at ${hovered ? "50% 50%" : "100% 100%"}, ${project.accent}15 0%, transparent 70%)`,
-          opacity: hovered ? 1 : 0,
-          transition: "opacity 0.3s ease",
-          pointerEvents: "none"
-        }}
-      />
-
       {/* Border accent line */}
       <div
         style={{
@@ -692,8 +697,7 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
             style={{
               color: project.accent,
               transform: expanded ? "rotate(45deg) scale(1.1)" : "rotate(0deg) scale(1)",
-              display: "inline-block",
-              filter: hovered ? `drop-shadow(0 0 8px ${project.accent})` : "none"
+              display: "inline-block"
             }}
           >
             +
@@ -701,7 +705,11 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
         </div>
 
         {/* Metrics with animation */}
-        <div className="grid grid-cols-3 gap-4 mb-6">
+        <div
+          className={`grid gap-4 mb-6 ${
+            project.metrics.length >= 4 ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-3"
+          }`}
+        >
           {project.metrics.map((m, idx) => (
             <div
               key={m.label}
@@ -715,8 +723,7 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
                 className="font-mono-display font-bold text-xl md:text-2xl"
                 style={{
                   color: project.accent,
-                  transition: "all 0.3s ease",
-                  filter: hovered ? `drop-shadow(0 0 6px ${project.accent})` : "none"
+                  transition: "all 0.3s ease"
                 }}
               >
                 {m.value}
@@ -738,7 +745,6 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
               key={s}
               className="skill-tag"
               style={{
-                color: "var(--muted-foreground)",
                 transition: "all 0.2s ease",
                 borderColor: hovered ? project.accent : "var(--border)",
                 color: hovered ? project.accent : "var(--muted-foreground)",
@@ -755,12 +761,54 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
       {/* Expanded detail */}
       <div
         className="overflow-hidden transition-all duration-500"
-        style={{ maxHeight: expanded ? "600px" : "0" }}
+        style={{ maxHeight: expanded ? "2000px" : "0" }}
       >
         <div
           className="px-8 md:px-10 pb-10 pt-6"
           style={{ borderTop: "1px solid var(--border)" }}
         >
+          {expanded && project.siteUrl && (
+            <div className="mb-8" style={{ border: "1px solid var(--border)" }}>
+              <div
+                className="flex items-center gap-2 px-3 py-2"
+                style={{ borderBottom: "1px solid var(--border)", background: "var(--secondary)" }}
+              >
+                <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#ff5f57" }} />
+                <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#febc2e" }} />
+                <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#28c840" }} />
+                <span
+                  className="font-mono-display text-xs ml-2 px-3 py-0.5 truncate"
+                  style={{
+                    background: "var(--background)",
+                    border: "1px solid var(--border)",
+                    color: "var(--muted-foreground)",
+                  }}
+                >
+                  {project.siteUrl.replace(/^https?:\/\//, "")}
+                </span>
+                <a
+                  href={project.siteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono-display text-xs ml-auto flex-shrink-0"
+                  style={{ color: project.accent }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  Abrir ↗
+                </a>
+              </div>
+              <div style={{ aspectRatio: "16 / 9", background: "var(--background)", overflow: "hidden" }}>
+                <iframe
+                  src={project.siteUrl}
+                  title={`Vista previa de ${project.name}`}
+                  className="w-full h-full"
+                  style={{ border: 0, display: "block" }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
+          )}
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             <div>
               <p
@@ -839,6 +887,17 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
           )}
         </div>
       </div>
+      <div
+        ref={glowRef}
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 20,
+          pointerEvents: "none",
+          opacity: hovered ? 1 : 0,
+          transition: "opacity 0.3s ease",
+        }}
+      />
     </div>
   );
 }
@@ -882,7 +941,7 @@ function Lab() {
 
   return (
     <section id="lab" style={{ background: "var(--muted)", borderTop: "1px solid var(--border)" }} aria-labelledby="lab-heading">
-      <Section id="lab-inner" className="!pt-24 !pb-24">
+      <Section id="lab-inner">
         <SectionLabel text="// Laboratorio UI & Micro-herramientas" />
         <div className="reveal mb-12" data-delay={60}>
           <h2
@@ -901,7 +960,7 @@ function Lab() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4" role="list" aria-label="Lista de proyectos de laboratorio">
+        <div className="grid md:grid-cols-2 gap-4" role="list" aria-label="Lista de proyectos de laboratorio">
           {lab.map((p, i) => (
             <LabCard key={p.id} project={p} delay={i * 100} />
           ))}
@@ -913,6 +972,7 @@ function Lab() {
 
 function LabCard({ project, delay }: { project: Project; delay: number }) {
   const [hovered, setHovered] = useState(false);
+  const { glowRef, onMouseMove } = useSpotlight(project.accent, hovered);
 
   return (
     <div
@@ -927,33 +987,8 @@ function LabCard({ project, delay }: { project: Project; delay: number }) {
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      onMouseMove={onMouseMove}
     >
-      {/* Glow effect on hover */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: `radial-gradient(circle at ${hovered ? "50% 50%" : "100% 100%"}, ${project.accent}12 0%, transparent 70%)`,
-          opacity: hovered ? 1 : 0,
-          transition: "opacity 0.3s ease",
-          pointerEvents: "none"
-        }}
-      />
-
-      {/* Corner accent */}
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          right: 0,
-          width: "20px",
-          height: "20px",
-          background: `linear-gradient(135deg, ${project.accent} 0%, transparent 50%)`,
-          opacity: hovered ? 1 : 0,
-          transition: "opacity 0.3s ease"
-        }}
-      />
-
       <div className="relative z-10">
         <div className="flex items-center justify-between mb-4">
           <span
@@ -1027,7 +1062,6 @@ function LabCard({ project, delay }: { project: Project; delay: number }) {
                 className="font-mono-display font-bold text-sm flex-shrink-0"
                 style={{
                   color: project.accent,
-                  filter: hovered ? `drop-shadow(0 0 4px ${project.accent})` : "none",
                   transition: "all 0.3s ease"
                 }}
               >
@@ -1054,7 +1088,6 @@ function LabCard({ project, delay }: { project: Project; delay: number }) {
                 letterSpacing: "0.05em",
                 border: "1px solid var(--border)",
                 padding: "2px 8px",
-                color: "var(--muted-foreground)",
                 transition: "all 0.2s ease",
                 borderColor: hovered ? project.accent : "var(--border)",
                 color: hovered ? project.accent : "var(--muted-foreground)",
@@ -1124,6 +1157,17 @@ function LabCard({ project, delay }: { project: Project; delay: number }) {
           </div>
         )}
       </div>
+      <div
+        ref={glowRef}
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 20,
+          pointerEvents: "none",
+          opacity: hovered ? 1 : 0,
+          transition: "opacity 0.3s ease",
+        }}
+      />
     </div>
   );
 }
