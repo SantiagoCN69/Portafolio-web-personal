@@ -120,6 +120,7 @@ interface Project {
   category: "flagship" | "lab";
   siteUrl?: string;
   repoUrl?: string;
+  image?: string;
 }
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -242,6 +243,7 @@ const PROJECTS: Project[] = [
     accent: "#25d366",
     category: "lab",
     repoUrl: "https://github.com/SantiagoCN69/Extencion-WP-WEB-Black-pure",
+    image: "/whatsapp.png",
   },
   {
     id: "academusoft",
@@ -261,6 +263,7 @@ const PROJECTS: Project[] = [
     accent: "#ffa657",
     category: "lab",
     repoUrl: "https://github.com/SantiagoCN69/Extencion-Academusoft",
+    image: "/academusoft.png",
   },
 ];
 
@@ -993,6 +996,23 @@ function LabCard({ project, delay }: { project: Project; delay: number }) {
       onMouseLeave={() => setHovered(false)}
     >
       <div className="relative z-10">
+        {project.image && (
+          <div
+            className="mb-5 overflow-hidden"
+            style={{
+              border: `1px solid ${hovered ? project.accent : "var(--border)"}`,
+              transition: "border-color 0.3s ease",
+            }}
+          >
+            <img
+              src={project.image}
+              alt={`Captura de ${project.name}`}
+              className="w-full block"
+              style={{ aspectRatio: "2 / 1", objectFit: "cover", display: "block" }}
+              loading="lazy"
+            />
+          </div>
+        )}
         <div className="flex items-center justify-between mb-4">
           <span
             className="font-mono-display text-xs tracking-widest"
