@@ -31,16 +31,16 @@
   --foreground: #f4f4f0;
   --card: #151517;
   --card-foreground: #f4f4f0;
-  --primary: #86d17c;
+  --primary: #c5f66c;
   --primary-foreground: #0c0c0e;
   --secondary: #1e1e22;
   --secondary-foreground: #d8d8d0;
   --muted: #151517;
   --muted-foreground: #b9b9b0;
-  --accent: #86d17c;
+  --accent: #c5f66c;
   --accent-foreground: #0c0c0e;
   --border: #2c2c31;
-  --ring: #86d17c;
+  --ring: #c5f66c;
   --radius: 2px;
 }
 
